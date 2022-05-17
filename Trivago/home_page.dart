@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,53 +12,49 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(48, 56, 98, 100),
-
       body: ListView(
+        padding: const EdgeInsets.all(16),
         children: [
           Container(
-            margin: const EdgeInsets.all(5),
+            margin: const EdgeInsets.only(bottom: 5),
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-            color: Color.fromRGBO(54, 48, 98, 100),
-            border: Border.all(),
-              ),
+            color: Colors.purple,
             child: Row(
               children: [
                 Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text('Melhores férias com o ex:',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Text(
+                        'Top destinos mais procurados',
                         style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                        ),
-
-                        const Text('Trivago',
-                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Corre que tá rolando muita promoção',
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          ),
                         ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromRGBO(233, 213, 218, 100),
-                            ),
-                          onPressed: () {},
-                          child:
-                          const Text('Hehe boy!', style: TextStyle(
-                            color: Color.fromRGBO(54, 48, 98, 100),
-                            fontSize: 15,
-                          ),
-                          ),
+                      ),
+                    const SizedBox(height: 16),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromRGBO(249, 72, 146, 60),
                         ),
-
-                      ],
-
-                    ),
+                        onPressed: () {},
+                        child:
+                        const Text('EU QUERO',
+                          style: TextStyle(
+                            color: Colors.white,
+                          fontSize: 15,
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
 
                 const SizedBox(width: 24),
@@ -65,10 +62,76 @@ class _HomePageState extends State<HomePage> {
                   fallbackHeight: 150,
                   fallbackWidth: 100,
                   color: Colors.white,
-                ),
-
+                )
               ],
-            )
+            ),
+          ),
+          Card(
+
+            margin: const EdgeInsets.all(1),
+
+            child:
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child:
+                  Column(
+
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Placeholder(fallbackHeight: 150),
+                  const SizedBox(height: 8),
+                  const Text("Pacote Cancún 2022",
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text("Aéreo - Hotel All incluse",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.wb_sunny_outlined,
+                        color: Colors.grey[700],
+                      ),
+                      const SizedBox(width: 4),
+                      const Text("5 Diárias"),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.person_outline,
+                        color: Colors.grey[700],
+                      ),
+                      const SizedBox(width: 4),
+                      const Text("1 Pessoa"),
+
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text("R\$ 3.749",
+                        style: TextStyle(
+                          color: Colors.orange[700],
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        "Taxa Grátis em até 12x",
+                        style: TextStyle(color: Colors.grey[700]),
+                      ),
+                    ],
+                  )
+                  SizedBox(height: 8),
+
+                ],
+              ),
+            ),
+
 
           ),
         ],
