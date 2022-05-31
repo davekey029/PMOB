@@ -1,24 +1,41 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+
+import '../widget/pacote_turistico.dart';
+import 'detalhes_pacotes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(16),
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        centerTitle: false,
+        title: const Text('Pesquisar'),
+        backgroundColor: const Color(0xFF10397B),
+      ),
+      body: buildBody(),
+    );
+  }
+
+  buildBody() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.only(bottom: 5),
+            decoration: BoxDecoration(
+              color: Colors.purple,
+              borderRadius: BorderRadius.circular(16),
+            ),
             padding: const EdgeInsets.all(16),
-            color: Colors.purple,
             child: Row(
               children: [
                 Expanded(
@@ -26,37 +43,38 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
-                        'Top destinos mais procurados',
+                        'TOP DESTINOS MAIS BUSCADOS',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 28,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold),
                       ),
                       const Text(
-                        'Corre que tá rolando muita promoção',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                        'Corre que ta rolando muita promoção',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 8),
                       ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const PacoteDetalhes();
+                              },
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Eu quero',
+                          style: TextStyle(color: Colors.black),
+                        ),
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromRGBO(249, 72, 146, 60),
-                        ),
-                        onPressed: () {},
-                        child:
-                        const Text('EU QUERO',
-                          style: TextStyle(
-                            color: Colors.white,
-                          fontSize: 15,
-                        ),
-                        ),
+                            primary: const Color(0xFFF8FF04)),
                       )
                     ],
                   ),
                 ),
-
                 const SizedBox(width: 24),
                 const Placeholder(
                   fallbackHeight: 150,
@@ -66,73 +84,28 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Card(
-
-            margin: const EdgeInsets.all(1),
-
-            child:
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child:
-                  Column(
-
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Placeholder(fallbackHeight: 150),
-                  const SizedBox(height: 8),
-                  const Text("Pacote Cancún 2022",
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text("Aéreo - Hotel All incluse",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.wb_sunny_outlined,
-                        color: Colors.grey[700],
-                      ),
-                      const SizedBox(width: 4),
-                      const Text("5 Diárias"),
-                      const SizedBox(width: 8),
-                      Icon(
-                        Icons.person_outline,
-                        color: Colors.grey[700],
-                      ),
-                      const SizedBox(width: 4),
-                      const Text("1 Pessoa"),
-
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Text("R\$ 3.749",
-                        style: TextStyle(
-                          color: Colors.orange[700],
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Taxa Grátis em até 12x",
-                        style: TextStyle(color: Colors.grey[700]),
-                      ),
-                    ],
-                  )
-                  SizedBox(height: 8),
-
-                ],
-              ),
-            ),
-
-
+          const SizedBox(height: 16),
+          const PacoteTuristico(
+            imagem:
+            'https://r4t2s9v3.stackpathcdn.com/wp-content/uploads/2021/07/cancun-todas-as-dicas.jpg',
+            titulo: 'Pacote Cancún 2022/2023',
+            transporte: 'Aéreo - Hotel All inclusive',
+            numDiarias: 5,
+            numPessoas: 2,
+            numParcelas: 6,
+            precoAntigo: 6819,
+            precoAtual: 2819,
+          ),
+          const PacoteTuristico(
+            imagem:
+            'https://r4t2s9v3.stackpathcdn.com/wp-content/uploads/2021/07/cancun-todas-as-dicas.jpg',
+            titulo: 'Pacote Maragogi 2023',
+            transporte: 'Hotel All inclusive',
+            numDiarias: 7,
+            numPessoas: 3,
+            numParcelas: 12,
+            precoAntigo: 4819,
+            precoAtual: 819,
           ),
         ],
       ),
