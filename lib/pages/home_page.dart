@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import '../widget/pacote_turismo.dart';
 import 'detalhes_pacotes.dart';
+import '../data/bd.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+ final PacoteTuristico pacoteTuristico;
+  const HomePage({
+    Key? key,
+    required this.pacoteTuristico,
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<PacoteTuristico> lista = BD.getPacotesTuristicos();
+  int selectedIndex = 0;
+  List pages = const [
+    HomePage(),
+    Center(child: Text('Page Temporaria', style: TextStyle(fontSize: 36))),
+    Center(child: Text('Page Temporaria', style: TextStyle(fontSize: 36))),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +30,20 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: false,
         title: const Text('Pesquisar'),
-        backgroundColor: Color(0xFF10397B),
+        backgroundColor: const Color(0xFF10397B),
       ),
       body: buildBody(),
+    );
+  }
+
+  buildListView() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: lista.length,
+      itemBuilder: (BuildContext context, int index) {
+        return CardPacoteTuristico(pacoteTuristico: lista[index]);
+      },
     );
   }
 
@@ -33,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.purple,
               borderRadius: BorderRadius.circular(16),
             ),
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Row(
               children: [
                 Expanded(
@@ -58,7 +82,9 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const PacoteDetalhes();
+                                return const PacoteDetalhes(
+
+                                );
                               },
                             ),
                           );
@@ -68,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.black),
                         ),
                         style: ElevatedButton.styleFrom(
-                            primary: Color(0xFFF8FF04)),
+                            primary: const Color(0xFFF8FF04)),
                       )
                     ],
                   ),
@@ -83,9 +109,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 16),
+          /*
           const PacoteTuristico(
             imagem:
-            'https://www.benchmarkresortsandhotels.com/i/SITE_150904_12094595_5NG1K/content/app/588DE9A6-E52C-2CF2-9F2B338975510861.jpg',
+            'https://r4t2s9v3.stackpathcdn.com/wp-content/uploads/2021/07/cancun-todas-as-dicas.jpg',
             titulo: 'Pacote Cancún 2022/2023',
             transporte: 'Aéreo - Hotel All inclusive',
             numDiarias: 5,
@@ -104,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             numParcelas: 12,
             precoAntigo: 4819,
             precoAtual: 819,
-          ),
+          ),*/
         ],
       ),
     );
